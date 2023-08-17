@@ -40,7 +40,28 @@
                 <source>8</source>
                 <target>8</target>
             </configuration>
-        </plugin>
+    </plugin>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version> <!-- Actualiza con la versión más reciente -->
+        <configuration>
+            <createDependencyReducedPom>false</createDependencyReducedPom>
+            <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <mainClass>com.example.SimpleHttpServer</mainClass>
+                </transformer>
+            </transformers>
+        </configuration>
+        <executions>
+            <execution>
+                <phase>package</phase>
+                <goals>
+                    <goal>shade</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
     </plugins>
   </build>
 </project>

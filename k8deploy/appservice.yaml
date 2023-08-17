@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apptest
+  labels:
+    app.kubernetes.io/app: apptest
+spec:
+  selector:
+    app: apptest
+  ports:
+    - port: 80
+      targetPort: 8080
+      name: apptest
+  type: ClusterIP

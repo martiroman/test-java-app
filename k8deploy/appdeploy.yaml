@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apptest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apptest
+  template:
+    metadata:
+      labels:
+        app: apptest
+        app.kubernetes.io/name: apptest
+        app.kubernetes.io/component: service
+        app.kubernetes.io/part-of: apptest
+        app.kubernetes.io/version: 0.0.4
+        app.kubernetes.io/build-version: "2"
+    spec:
+      containers:
+        - name: apptest
+          image: mnroman/apptest:0.0.4
+          ports:
+            - containerPort: 8080
+          env:
+          - name: DT_CUSTOM_PROP
+            value: "buildVersion=0.0.4 keptn_project=dynatrace keptn_service=holaweb keptn_stage=quality-stage"
+          - name: "DT_RELEASE_VERSION"
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['app.kubernetes.io/version']
+          - name: "DT_RELEASE_PRODUCT"
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['app.kubernetes.io/part-of']
+          - name: "DT_BUILD_VERSION"
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['app.kubernetes.io/build-version']
+
+          imagePullPolicy: Always
+      imagePullSecrets:
+      - name: regcred
