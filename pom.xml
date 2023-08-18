@@ -17,8 +17,24 @@
     <dependency>
         <groupId>io.vertx</groupId>
         <artifactId>vertx-core</artifactId>
-        <version>3.9.0</version> <!-- Reemplaza con la versión de Vert.x que estés usando -->
+        <version>4.4.4</version> <!-- Reemplaza con la versión de Vert.x que estés usando -->
     </dependency>
+    <dependency>
+        <groupId>io.vertx</groupId>
+        <artifactId>vertx-web</artifactId>
+        <version>4.4.4</version>
+     </dependency>
+<!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-sync -->
+     <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-sync</artifactId>
+        <version>4.10.2</version>
+     </dependency>
+     <dependency>
+        <groupId>io.opentracing</groupId>
+        <artifactId>opentracing-api</artifactId>
+        <version>0.33</version>
+     </dependency>
   </dependencies>
   <build>
     <plugins>
